@@ -6,10 +6,6 @@
     //$yellowCards = mysqli_fetch_assoc($resYellow);
     $resBlue = mysqli_query($link, "SELECT link FROM objectives WHERE type='blue'");
     //$blueCards = mysqli_fetch_assoc($resBlue);
- 
-                                            
-
-    
 
 ?>
 <!DOCTYPE html>
@@ -203,13 +199,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
-
-
-
-    
+ 
 </body>
 </html>
