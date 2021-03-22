@@ -3,9 +3,9 @@
     $resRed = mysqli_query($link, "SELECT link FROM objectives WHERE type='red'");
 
     $resYellow = mysqli_query($link, "SELECT link FROM objectives WHERE type='yellow'");
-    //$yellowCards = mysqli_fetch_assoc($resYellow);
+
     $resBlue = mysqli_query($link, "SELECT link FROM objectives WHERE type='blue'");
-    //$blueCards = mysqli_fetch_assoc($resBlue);
+
 
 ?>
 <!DOCTYPE html>
@@ -121,17 +121,15 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Вариант №1-2
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        Вариант №2-2
-                                    </label>
+                            <div class="row">
+                                <?php
+                                    while ($yellowCards = mysqli_fetch_assoc($resYellow))
+                                    {
+                                        echo '<div class = "col">';
+                                        echo '<img class="rounded mx-auto d-block" src=images/yellow/'.$yellowCards['link'].'>';
+                                        echo '</div>';
+                                    }
+                                ?>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -179,17 +177,14 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                    <label class="form-check-label" for="flexRadioDefault1">
-                                        Вариант №1-3
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                    <label class="form-check-label" for="flexRadioDefault2">
-                                        Вариант №2-3
-                                    </label>
+                            <?php
+                                    while ($blueCards = mysqli_fetch_assoc($resBlue))
+                                    {
+                                        echo '<div class = "col">';
+                                        echo '<img class="rounded mx-auto d-block" src=images/blue/'.$blueCards['link'].'>';
+                                        echo '</div>';
+                                    }
+                                ?>
                                 </div>
                             </div>
                             <div class="modal-footer">
