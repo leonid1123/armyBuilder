@@ -6,6 +6,8 @@
 
     $resBlue = mysqli_query($link, "SELECT link FROM objectives WHERE type='blue'");
 
+    $resRosterRed = mysqli_query($link, "SELECT rostertmp.rosterID AS 'ID', rostertmp.redObj AS 'redObj', objectives.link AS 'redLink' FROM rostertmp JOIN objectives ON rostertmp.redObj=objectives.id WHERE rostertmp.rosterID=1");
+
 
 ?>
 <!DOCTYPE html>
@@ -33,7 +35,17 @@
                         <div class="col">
                             <!-- Button trigger modal 1 -->
                             <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-                                <img src="images/choose_assault_objective.png">
+                            <?php
+                                if (mysqli_num_rows($resRosterRed)<1) {
+                                    echo '<img src="images/choose_assault_objective.png">';  
+                                }
+                                while ($rosterCollection = mysqli_fetch_assoc($resRosterRed))
+                                    {
+                                        if (!empty($rosterCollection)){
+                                            echo '<img class="rounded mx-auto d-block" src=images/red/'.$rosterCollection['redLink'].'>';
+                                        }
+                                    }
+                            ?>
                             </button>
                         </div>
                         <div class="col">
@@ -55,7 +67,6 @@
                             </button>
                         </div>
                     </div>
-                  
                 </div>
               </div>
             </div>
@@ -96,6 +107,7 @@
                             <div class="modal-body">
                                 <div class="row">
                                 <?php
+                                //todo make DB insert: 1-add form,2-add submit,3-add choosable element,4-add sql insert
                                     while ($redCards = mysqli_fetch_assoc($resRed))
                                     {
                                         echo '<div class = "col">';
@@ -177,6 +189,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
+                            <div class="row">
                             <?php
                                     while ($blueCards = mysqli_fetch_assoc($resBlue))
                                     {
@@ -185,7 +198,7 @@
                                         echo '</div>';
                                     }
                                 ?>
-                                </div>
+                            </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
