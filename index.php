@@ -104,23 +104,28 @@
                                 <h5 class="modal-title" id="exampleModalLabel1">Assault Objective</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
+                            <form action="addRed.php" method="POST">
                             <div class="modal-body">
-                                <div class="row">
+                                
                                 <?php
-                                //todo make DB insert: 1-add form,2-add submit,3-add choosable element,4-add sql insert
+                                    $i=0;
                                     while ($redCards = mysqli_fetch_assoc($resRed))
                                     {
-                                        echo '<div class = "col">';
-                                        echo '<img class="rounded mx-auto d-block" src=images/red/'.$redCards['link'].'>';
-                                        echo '</div>';
+                                        $i++;
+                                    echo '<div class="form-check">';
+                                    echo '<input class="form-check-input" type="radio" name="flexRadioDefault'.$i.'" id="flexRadioDefault'.$i.'1">';
+                                    echo '<label class="form-check-label" for="flexRadioDefault'.$i.'1">';
+                                    echo '<img class="rounded mx-auto d-block" style="width:100px" src=images/red/'.$redCards['link'].'>';
+                                    echo '</label>';
+                                    echo '</div>';
                                     }
                                 ?>
-                                </div>
+                                
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
+                                <button type="submit" class="btn btn-primary">Выбрать</button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>

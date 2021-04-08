@@ -1,0 +1,3 @@
+<?php
+    $chosenRed=$_POST[''];
+?>
